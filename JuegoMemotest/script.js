@@ -2,8 +2,8 @@
   // Define tus cartas aquí, asegúrate de que haya 10 pares
   // JavaScript para el juego de memoria
   // Define tus cartas aquí, asegúrate de que haya 10 pares
-  //const cards = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
-  const cards = [
+  const cards = ['horse', 'dog', 'panda', 'cat', 'rabbit', 'tiger', 'turtle', 'wolf', 'elephant', 'fish', 'horse', 'dog', 'panda', 'cat', 'rabbit', 'tiger', 'turtle', 'wolf', 'elephant', 'fish'];
+  const cartas = [
       { nombre: 'horse', img: 'horse.png' },
       { nombre: 'dog', img: 'dog.png' },
       { nombre: 'panda', img: 'panda.png' },
@@ -29,6 +29,7 @@
   let lives = 10;
   let flippedCards = [];
   let matchedPairs = 0;
+  let iterador = 0;
 
   const gameContainer = document.getElementById('game-container');
   const livesDisplay = document.getElementById('lives');
@@ -52,22 +53,28 @@
       shuffle(cards);
       for (let i = 0; i < cards.length; i++) {
           const card = document.createElement('div');
+
           card.className = 'card';
-          card.dataset.value = cards[i].img;
+          card.dataset.value = cards[i];
           card.innerText = '?'; // Ocultar el contenido inicialmente
+
           gameContainer.appendChild(card);
+
 
           card.addEventListener('click', () => {
               if (flippedCards.length < 2 && !flippedCards.includes(card)) {
                   flipCard(card);
                   flippedCards.push(card);
-
-                  if (flippedCards.length === 2) {
-                      setTimeout(checkMatch, 1000);
-                  }
               }
+
+              if (flippedCards.length === 2) {
+                  setTimeout(checkMatch, 1000);
+              }
+
           });
       }
+
+
   }
 
   let gameEnded = false; // Variable para controlar si el juego ha terminado
@@ -77,8 +84,14 @@
   // Función para voltear una carta
   function flipCard(card) {
       if (!gameEnded) {
-          card.innerText = card.dataset.value;
+
+          //card.innerText = card.dataset.value;
+          const imgSrc = document.createElement('img');
+          imgSrc.src = card.dataset.value + '.png';
+          card.appendChild(imgSrc);
+          card.removeChild(card.firstChild);
           card.classList.add('flipped');
+
       }
   }
 

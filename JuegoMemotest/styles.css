@@ -32,8 +32,12 @@ h1 {
     transition: transform 0.3s ease-in-out;
 }
 
+.card img {
+    width: 100%;
+}
+
 .card.flipped {
-    transform: rotateY(180deg);
+    transform: rotateY(360deg);
 }
 
 .card.matched {
