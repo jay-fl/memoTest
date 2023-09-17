@@ -1,0 +1,61 @@
+/* Agrega tus estilos CSS aquí */
+
+body {
+    text-align: center;
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+}
+
+#game-container {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 400px;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.card {
+    width: 80px;
+    height: 80px;
+    background-color: #eee;
+    border: 1px solid #333;
+    margin: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    transition: transform 0.3s ease-in-out;
+}
+
+.card.flipped {
+    transform: rotateY(180deg);
+}
+
+.card.matched {
+    background-color: green;
+}
+
+#reset-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+#reset-button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+#result-message {
+    margin-top: 20px;
+    font-size: 24px;
+}
