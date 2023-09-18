@@ -29,7 +29,8 @@
   let lives = 10;
   let flippedCards = [];
   let matchedPairs = 0;
-  let iterador = 0;
+  let gameEnded = false; // Variable para controlar si el juego ha terminado
+
 
   const gameContainer = document.getElementById('game-container');
   const livesDisplay = document.getElementById('lives');
@@ -77,7 +78,7 @@
 
   }
 
-  let gameEnded = false; // Variable para controlar si el juego ha terminado
+
 
   // ...
 
@@ -101,8 +102,8 @@
           const [card1, card2] = flippedCards;
 
           if (card1.dataset.value === card2.dataset.value) {
-              card1.classList.remove('flipped');
-              card2.classList.remove('flipped');
+              //card1.classList.remove('flipped');
+              //card2.classList.remove('flipped');
               card1.classList.add('matched');
               card2.classList.add('matched');
               matchedPairs++;
@@ -117,7 +118,7 @@
                   card2.innerText = '?';
                   card1.classList.remove('flipped');
                   card2.classList.remove('flipped');
-              }, 1000);
+              }, 200);
 
               lives--;
 
@@ -129,6 +130,7 @@
           livesDisplay.textContent = lives;
           flippedCards = [];
       }
+      flippedCards = [];
   }
 
   // Función para terminar el juego
@@ -136,17 +138,21 @@
       if (win) {
           resultMessage.textContent = '¡Has ganado!';
           resultMessage.style.color = 'green';
+          gameEnded = true;
       } else {
           resultMessage.textContent = '¡Has perdido!';
           resultMessage.style.color = 'red';
-      }
+          gameEnded = true;
 
+      }
+      //gameEnded = false;
       resetButton.disabled = false;
-      gameEnded = false; // Marcar el juego como terminado
+
   }
 
   // Evento para reiniciar el juego
   resetButton.addEventListener('click', () => {
+      gameEnded = false; // Marcar el juego como terminado
       gameContainer.innerHTML = '';
       resultMessage.textContent = '';
       lives = 10;
